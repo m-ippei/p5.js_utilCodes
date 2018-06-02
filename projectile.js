@@ -2,6 +2,8 @@ var pv,v1,v2;
 var r;
 var start = false;
 var g0,g;
+var mp;
+
 
 function setup() {
   createCanvas(400, 400);
@@ -12,6 +14,8 @@ function setup() {
 	g = createVector(0,-20)
 	g0 = g.copy()
 	g0 = g.mult(0.5)
+	mp = createVector(0,0)
+	frameRate(3)
 }
 
 function Rect(x,y) {
@@ -21,11 +25,12 @@ function Rect(x,y) {
 	rect(0,0,10,10)
 }
 
-function mouseClicked(){
-	console.log(v1.toString())
+function go(){
 	if(start===false){
-		v2.add(g0)
-		v1 = v2.copy()
+		pv.set(0,0)
+		pv.add(mp)
+		pv.add(g0)
+		v1 = pv.copy()
 		r.set(v1)
 		start=true
 	}else{
@@ -34,10 +39,25 @@ function mouseClicked(){
 		pv.add(g)
 		v1 = pv.copy()
 		r.add(pv)
+		if(r.y<0){
+			start=false
+			r.set(0,0)
+		}
 	}
+}
+
+function mouseClicked(){
+	go()
 }
 
 function draw() {
   background(220);
+	go()
 	Rect(r.x,r.y)
+}
+
+function mouseClicked() {
+	translate(200,200)
+	mp.set(mouseX,400-mouseY)
+	console.log(mp.toString())
 }
