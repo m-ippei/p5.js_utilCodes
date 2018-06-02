@@ -1,4 +1,4 @@
-var a = [0,0,0,0,0,0,0,0]
+var a = [0,0,0,0,0,0,0,0,0,0]
 
 function setting() {
   a[0] = createVector(0,0)  //v
@@ -10,35 +10,38 @@ function setting() {
 	a[5] = createVector(0,0)//pv
 	a[6] = createVector(0,0)//r
   a[7] = false//start
+  a[8] = 200//tarnslate x
+  a[9] = 300//translate y
 }
 
-function go(){
-	if(a[7]===false){
-    a[0].set(0,0)
-    a[0].add(a[1])
-    a[0].rotate(random(0,PI))
-		a[5].set(0,0)
-		a[5].add(a[0])
-		a[5].add(a[4])
-		a[2] = a[5].copy()
-		a[6].set(a[2])
-		a[7]=true
+function go(arr){
+	if(arr[7]===false){
+    arr[0].set(0,0)
+    arr[0].add(arr[1])
+    arr[0].rotate(random(0,PI))
+		arr[5].set(0,0)
+		arr[5].add(arr[0])
+		arr[5].add(arr[4])
+		arr[2] = arr[5].copy()
+		arr[6].set(arr[2])
+		arr[7]=true
 	}else{
-		a[5].set(0,0)
-		a[5].add(a[2])
-		a[5].add(a[3])
-		a[2] = a[5].copy()
-		a[6].add(a[5])
-		if(a[6].y < -100){
-			a[7]=false
-			a[6].set(0,0)
+		arr[5].set(0,0)
+		arr[5].add(arr[2])
+		arr[5].add(arr[3])
+		arr[2] = arr[5].copy()
+		arr[6].add(arr[5])
+		if(arr[6].y < -100){
+			arr[7]=false
+			arr[6].set(0,0)
 		}
 	}
+  return arr;
 }
 
 function Rect(x,y) {
 	rectMode(CENTER)
-	translate(200,300)
+	translate(a[8],a[9])
 	translate(x,-y)
 	rect(0,0,10,10)
 }
@@ -51,6 +54,6 @@ function setup() {
 
 function draw() {
   background(220);
-  go()
+  a = go(a)
 	Rect(a[6].x,a[6].y)
 }
