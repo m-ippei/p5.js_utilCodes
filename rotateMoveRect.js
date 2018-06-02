@@ -1,36 +1,35 @@
-var x = 0;
-var y = 0;
-var r = 0;
+var v1,v2;
+var r = 0
 
 function setup() {
   createCanvas(400, 400);
-	
+	//v1 = createVector(0,0)
+	v2 = createVector(10,10)
+	r = PI /10
 }
 
 function Rect(x,y,rad) {
 	rectMode(CENTER)
 	translate(200,200)
 	translate(x,-y)
-	rotate(rad)
+	//rotate(rad)
 	rect(0,0,10,10)
 }
 
-function Move(){
-	y += 2
-	x += 2
-	r += PI/20
+function mouseClicked() {
+	//v1.add(v2)
+	
 }
 
-function mouseClicked() {
-	Move()
+function m(){
+	v2.rotate(r)
 }
 
 function draw() {
   background(255);
-	if(frameCount%2===0){
-		Move()
+	//Rect(v1.x,v1.y)
+	if(frameCount%3===0){
+		m()
 	}
-	Rect(x,y,r)
-	//rotate()
+	Rect(v2.x,v2.y)
 }
-
