@@ -15,7 +15,6 @@ function setup() {
 	g0 = g.copy()
 	g0 = g.mult(0.5)
 	mp = createVector(0,0)
-	frameRate(3)
 }
 
 function Rect(x,y) {
@@ -28,7 +27,7 @@ function Rect(x,y) {
 function go(){
 	if(start===false){
 		pv.set(0,0)
-		pv.add(mp)
+		pv.add(mouseX,400-mouseY)
 		pv.add(g0)
 		v1 = pv.copy()
 		r.set(v1)
@@ -54,10 +53,4 @@ function draw() {
   background(220);
 	go()
 	Rect(r.x,r.y)
-}
-
-function mouseClicked() {
-	translate(200,200)
-	mp.set(mouseX,400-mouseY)
-	console.log(mp.toString())
 }
