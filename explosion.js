@@ -16,7 +16,6 @@ function setup() {
 		Rs[i] = createVector(0,0)
 		Ps[i] = createVector(-50 + i*10,0)
 	}
-	frameRate(4)
 }
 
 function Rect(x,y) {
@@ -25,10 +24,20 @@ function Rect(x,y) {
 	rect(x,-y,10,10)
 }
 
+function resetRotate() {
+	for(i=0;i<10;i++){
+		Vs[i].set(60,0)
+		Vs[i].rotate(random(0,PI))
+ 	}	
+}
+
 function draw() {
   background(220);
 	t+=0.2
-	if(t>13){t=0}
+	if(t>13){
+		resetRotate()
+		t=0
+	}
 	var t2 = t*t
 	
 	for(i=0;i<10;i++){
